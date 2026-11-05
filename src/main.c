@@ -1,6 +1,18 @@
-#include <stdio.h>
+#include <raylib.h>
 
-int main(int argc, char **argv) {
-    printf("hello world!\n");
+int main(void)
+{
+    InitWindow(800, 450, "Glass-Rift");
+    SetTargetFPS(60);
+
+    while (!WindowShouldClose())
+    {
+        BeginDrawing();
+            ClearBackground(RAYWHITE);
+            DrawText("Glass-Rift", 190, 200, 20, LIGHTGRAY);
+        EndDrawing();
+    }
+
+    CloseWindow();
     return 0;
 }
