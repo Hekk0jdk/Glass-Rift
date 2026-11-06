@@ -11,3 +11,5 @@ build/
 #compile_commands:
 compile_commands.json
 
+# Ols file for plugin.
+ols.json
