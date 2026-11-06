@@ -6,7 +6,8 @@ import rl "vendor:raylib"
 main :: proc() {
     // Init game window with sizes.
     rl.InitWindow(800, 450, "Glass-Rift")
-    rl.SetTargetFPS(60);
+    rl.SetTargetFPS(60)
+    rl.DisableCursor()
 
     // Create game camera.
     camera := rl.Camera{
@@ -18,22 +19,17 @@ main :: proc() {
     }
 
     // Base game cycle while window is opened.
-    for !rl.WindowShouldClose() {
+    for !rl.WindowShouldClose()
+    {
+    	rl.UpdateCamera(&camera, rl.CameraMode.FIRST_PERSON);
+
         rl.BeginDrawing()
+        rl.ClearBackground(rl.BLACK)
+
         rl.BeginMode3D(camera)
         rl.DrawCube({2.0, 2.0, 2.0}, 1, 1, 1, rl.RED)
         rl.EndMode3D()
         rl.EndDrawing()
-
-        // Keyboard keys for player movement.
-        if rl.IsKeyDown(.RIGHT) {
-            camera.position.x += 0.1
-            camera.target.x += 0.1
-        }
-        if rl.IsKeyDown(.LEFT) {
-            camera.position.x -= 0.1
-            camera.target.x -= 0.1
-        }
     }
 
     rl.CloseWindow()
