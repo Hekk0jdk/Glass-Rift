@@ -3,6 +3,9 @@ package main
 import "core:fmt"
 import rl "vendor:raylib"
 
+ZERO_VECTOR3 :: rl.Vector3{0, 0, 0}
+ZERO_VECTOR2 :: rl.Vector2{0, 0}
+
 main :: proc() {
     // Init game window with sizes.
     rl.InitWindow(800, 450, "Glass-Rift")
@@ -11,8 +14,8 @@ main :: proc() {
 
     // Create game camera.
     camera := rl.Camera{
-        position   = {0.0, 0.0, 2.0},
-        target     = {2.0, 2.0, 2.0},
+        position   = {0.0, 1.8, 2.0}, // Y set to 180 cm.
+        target     = ZERO_VECTOR3,
         up         = {0.0, 1.0, 0.0},
         fovy       = 45.0,
         projection = .PERSPECTIVE,
@@ -27,7 +30,7 @@ main :: proc() {
         rl.ClearBackground(rl.BLACK)
 
         rl.BeginMode3D(camera)
-        rl.DrawCube({2.0, 2.0, 2.0}, 1, 1, 1, rl.RED)
+        rl.DrawPlane(ZERO_VECTOR3, {10.0, 10.0}, rl.RED)
         rl.EndMode3D()
         rl.EndDrawing()
     }
