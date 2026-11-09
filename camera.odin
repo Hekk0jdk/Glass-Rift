@@ -29,7 +29,7 @@ camera_update :: proc(camera: ^CameraState) {
     camera.pitch = clamp(camera.pitch, -1.5, 1.5)
     forward := calculate_forward(camera)
 
-    right := rl.Vector3{ math.cos(camera.yaw), 0, -math.sin(camera.yaw) }
+    right := rl.Vector3{ math.cos(camera.yaw), 0, math.sin(camera.yaw) }
 
     speed: f32 = WALK_SPEED
     if rl.IsKeyDown(.LEFT_SHIFT) {
@@ -54,7 +54,7 @@ camera_to_raylib :: proc(camera: ^CameraState) -> rl.Camera3D {
         position   = camera.pos,
         target     = camera.pos + forward,
         up         = {0, 1, 0},
-        fovy       = 45.0,
+        fovy       = 90.0,
         projection = .PERSPECTIVE,
     }
 }
