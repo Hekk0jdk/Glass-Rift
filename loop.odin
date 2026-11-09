@@ -20,6 +20,9 @@ run :: proc() {
 
         rl.EndMode3D()
 
+        // 2D UI поверх 3D.
+        draw_hud()
+
         rl.EndDrawing()
     }
 }
